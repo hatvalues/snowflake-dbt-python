@@ -6,12 +6,16 @@ test:
 	python -m pytest --cov=tests
 
 lint:
-	pylint --disable=R,C ./app_logic
+	pylint --disable=R,C ./
 
 format:
-	black *.py app_logic/*.py
+	black *.py
 
 clean:
 	rm -rf __pycache__
 
+build:
+	dbt run --project-dir ./demo_db
+
 all: install lint clean format test
+
